@@ -1,4 +1,4 @@
-![logo](logo.png "Logo")
+![logo](./images/logo.png "Logo")
 
 # l2a.lua
 

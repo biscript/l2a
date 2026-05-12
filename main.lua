@@ -4,7 +4,7 @@
 --                                             - Top -                                              --
 --                                                                                                  --
 ------------------------------------------------------------------------------------------------------
-local l2a = require "l2a"                           --  require l2a (lua 2 (to) audacity) library   --
+local l2a = require "libraries.l2a"                 --  require l2a (lua 2 (to) audacity) library   --
 local labels                                        --  create new local labels (nil) (optional)    --
 ------------------------------------------------------------------------------------------------------
 
