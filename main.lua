@@ -19,7 +19,7 @@ local labels                                        --  create new local labels 
 --                                         READ LUA LABELS                                          --
 --                                                                                                  --
 ------------------------------------------------------------------------------------------------------
-labels = l2a.read( "labels.lua" )                   --   read labels.lua                            --
+labels = l2a.read( "./input/labels.lua" )           --   read labels.lua                            --
 print( labels )                                     --   print lua labels                           --
 l2a.write( "./output/act1-out1.txt", labels )       --   write lua labels to o1.txt                 --
 ------------------------------------------------------------------------------------------------------
