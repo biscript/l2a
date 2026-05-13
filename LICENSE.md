@@ -1,6 +1,8 @@
+![logo-icon](https://raw.githubusercontent.com/mozilla/protocol-assets/main/logos/firefox/logo.svg "Mozilla logo")
+![logo-text](https://raw.githubusercontent.com/mozilla/protocol-assets/main/logos/mozilla/logo-word-hor-white.svg "Mozilla Text")
+
 Mozilla Public License Version 2.0
 ==================================
-
 
 ## 1. Definitions
 
