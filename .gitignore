@@ -40,5 +40,5 @@ luac.out
 *.hex
 
 # Project
-./output/*.txt
-./output/*.lua
+output/*.txt
+output/*.lua

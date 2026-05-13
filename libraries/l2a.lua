@@ -37,7 +37,7 @@ l2a.auda2table = function( raw )
     local entries = {}
     local set, out, tag, min, max
     for line in raw:gmatch( "[^\n]+" ) do
-        if set and out and min and max then
+        if set and out and tag and min and max then
             set, out, tag, min, max = line:match(
                 "([%d%.]+)\t([%d%.]+)\t([^\t]*)\t([%d%.]+)\t([%d%.]+)"
             )
@@ -50,7 +50,19 @@ l2a.auda2table = function( raw )
                     max = tonumber( max ),
                 }
             )
-        elseif set and out then
+        elseif set and out and min and max then
+            set, out, min, max = line:match(
+                "([%d%.]+)\t([%d%.]+)\t([%d%.]+)\t([%d%.]+)"
+            )
+            table.insert(
+                entries, {
+                    set = tonumber( set ),
+                    out = tonumber( out ),
+                    min = tonumber( min ),
+                    max = tonumber( max ),
+                }
+            )
+        elseif set and out and tag then
             set, out, tag = line:match(
                 "([%d%.]+)\t([%d%.]+)\t([^\t]*)"
             )
@@ -59,6 +71,16 @@ l2a.auda2table = function( raw )
                     set = tonumber( set ),
                     out = tonumber( out ),
                     tag = tostring( tag or "" ),
+                }
+            )
+        elseif set and out then
+            set, out = line:match(
+                "([%d%.]+)\t([%d%.]+)"
+            )
+            table.insert(
+                entries, {
+                    set = tonumber( set ),
+                    out = tonumber( out ),
                 }
             )
         end
@@ -78,7 +100,7 @@ l2a.table2auda = function( entries )
     local lines = {}
     local row
     for i, e in ipairs( entries ) do
-        if e.set and e.out and e.min and e.max then
+        if e.set and e.out and e.tag and e.min and e.max then
             row = string.format(
                 "%.6f\t%.6f\t%s\t%.6f\t%.6f\n",
                 tonumber( e.set ),
@@ -87,12 +109,26 @@ l2a.table2auda = function( entries )
                 tonumber( e.min ),
                 tonumber( e.max )
             )
-        elseif e.set and e.out then
+        elseif e.set and e.out and e.min and e.max then
+            row = string.format(
+                "%.6f\t%.6f\t%.6f\t%.6f\n",
+                tonumber( e.set ),
+                tonumber( e.out ),
+                tonumber( e.min ),
+                tonumber( e.max )
+            )
+        elseif e.set and e.out and e.tag then
             row = string.format(
                 "%.6f\t%.6f\t%s\n",
                 tonumber( e.set ),
                 tonumber( e.out ),
                 tostring( e.tag or "" )
+            )
+        elseif e.set and e.out then
+            row = string.format(
+                "%.6f\t%.6f\n",
+                tonumber( e.set ),
+                tonumber( e.out )
             )
         end
         table.insert( lines, row )
